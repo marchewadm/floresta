@@ -1,0 +1,272 @@
+@use "../abstracts" as *;
+
+// ----- INDEX.HTML PAGE -----
+
+.welcome-section {
+  margin-bottom: 7.8rem;
+}
+
+.hero {
+  // URL path is actually fitted to index.css compiled file so it may look broken inside of SCSS file
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("../img/bgphoto.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  position: relative;
+}
+
+.hero--quote {
+  font-size: $fs-3;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.4px;
+
+  strong {
+    font-weight: 500;
+    color: $primary;
+  }
+}
+
+.container {
+  max-width: 50rem;
+  position: absolute;
+  top: 70%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+// -- NEW ARRIVALS
+.products-section {
+  margin-bottom: 7.8rem;
+}
+
+.products-slider {
+  max-width: 110rem;
+  padding-bottom: 3rem;
+}
+
+.slider-content {
+  margin: 0 4rem;
+  overflow: hidden;
+}
+
+.gallery-item {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.gallery-item img {
+  height: 30rem;
+  width: 30rem;
+  // images to resize (300px x 300px)
+  cursor: pointer;
+}
+
+.img-hover {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.gallery-item--description {
+  font-size: $fs-8;
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+// -- SLIDER NEW ARRIVALS
+.swiper-btn {
+  color: #808080;
+  transform: translateY(-2.4rem);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: $primary;
+}
+
+:root {
+  --swiper-navigation-size: 2.6rem;
+}
+
+
+// -- ABOUT SECTION
+.about-section {
+  margin-bottom: 9.6rem;
+}
+
+.heading--about {
+  padding-bottom: 1rem;
+}
+
+.about--quote {
+  font-size: $fs-7;
+  text-align: center;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+
+  span {
+    font-weight: 500;
+    color: $primary;
+  }
+}
+
+.about-container {
+  max-width: 100rem;
+  margin: 4.8rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.about--text {
+  box-shadow: -1px 1px 10px 1px rgba(0, 0, 0, 0.1);
+  border-radius: $br-normal;
+  padding: 3rem;
+  background-color: #fff;
+  transform: translate(32%, 6%);
+  width: 130%;
+  height: fit-content;
+
+  span {
+    color: $primary;
+    font-weight: 500;
+  }
+
+  .subheading--about {
+    font-size: $fs-6;
+    font-weight: 500;
+    z-index: 9999;
+    margin-bottom: 1rem;
+
+  }
+
+  p {
+    font-size: $fs-7;
+    letter-spacing: 0.2px;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  p:last-child {
+    margin: 0;
+  }
+
+  z-index: 9999;
+}
+
+.about--photo {
+  z-index: 5;
+}
+
+.about--photo img {
+  height: 50rem;
+  box-shadow: 3px 5px 10px 3px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+// -- MAP (CONTACT SECTION)
+.contact-section {
+  margin-bottom: 7.8rem;
+}
+
+.map-container {
+  height: 50rem;
+  width: 100rem;
+  margin: 0 auto;
+  border: 1px solid #dbdbdb;
+  border-radius: $br-normal;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#map {
+  grid-column: 1/4;
+  border-radius: $br-normal 0 0 $br-normal;
+}
+
+.map-info {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.map-info--box {
+  width: 20rem;
+  margin: 0 auto;
+}
+
+.map-info--heading {
+  font-size: $fs-5;
+  color: #9b9c9d;
+  letter-spacing: 0.2px;
+}
+
+.map-info--text {
+  font-size: $fs-7;
+  color: $secondary;
+  line-height: 1.3;
+}
+
+.map-info--box:last-child {
+  .map-info--text:nth-child(even) {
+    font-weight: 500;
+  }
+
+  .map-info--text strong {
+    font-weight: 500;
+    color: #c45151;
+  }
+}
+
+// -- OUR GOALS SECTION
+.goals-section {
+  max-width: 110rem;
+  margin: 0 auto 12.4rem;
+  border-top: $primary 2px solid;
+}
+
+.heading--goals {
+  padding-top: 3rem;
+}
+
+.goals-container {
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  gap: 3rem;
+}
+
+.goal {
+  max-width: 20rem;
+}
+
+.icon--goal {
+  font-size: $fs-2;
+  margin-bottom: 1rem;
+}
+
+.subheading--goal {
+  font-size: $fs-8;
+  font-weight: 500;
+  color: $primary-dark;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.goal p {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  letter-spacing: 0.1px;
+}

@@ -1,0 +1,19 @@
+// -- BASE: reset styles
+@use "./base/base";
+
+// -- ABSTRACTS
+@use "./abstracts/colors";
+@use "./abstracts/font-sizes";
+@use "./abstracts/variables";
+@use "./abstracts/placeholders";
+
+// -- COMPONENTS
+@use "./components/buttons";
+@use "./components/heading";
+
+// -- LAYOUT
+@use "./layout/navigation";
+@use "./layout/footer";
+
+// -- VIEWS
+@use "./views/home";

@@ -1,0 +1,73 @@
+@use "../abstracts" as *;
+
+.header-section {
+  height: 8.6rem;
+  padding: 0 3.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 4.6rem;
+  padding-bottom: 0.4rem;
+}
+
+.main-nav {
+  &--list {
+    list-style: none;
+    display: flex;
+    gap: 5rem;
+  }
+
+  &--link {
+    &:link, &:visited {
+      letter-spacing: 0.5px;
+      font-size: $fs-7;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #37383b;
+    }
+
+    &:hover, &:active {
+      transform: scaleX(1);
+    }
+
+    // ON HOVER EFFECT
+    &::after {
+      display: block;
+      content: "";
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid $primary;
+      transform: scaleX(0);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// ACCOUNT NAV
+.account {
+  padding-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.icon--cart {
+  font-size: 2.8rem;
+  color: #37383b;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.btn {
+
+}

@@ -1,0 +1,157 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+  <main class="main">
+    <section class="welcome-section">
+      <div class="hero">
+        <div class="container">
+          <h2 class="hero--quote">Wprowadź do domu odrobinę... <strong>zieleni</strong></h2>
+          <button class="btn btn--store">Przeglądaj</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <h2 class="heading heading--products">Nowości</h2>
+      <div class="products-slider swiper">
+        <div class="slider-content">
+          <div class="gallery swiper-wrapper">
+            <div class="gallery-container swiper-slide">
+              <figure class="gallery-item">
+                <img src="{% static "img/epipremnum_aureum_0.jpg" %}" alt="Epipremnum Aureum Flower">
+                <img src="{% static "img/epipremnum_aureum_1.jpg" %}" alt="Epipremnum Aureum Flower" class="img-hover">
+              </figure>
+              <div class="gallery-item--description">
+                <p class="image-name">Epipremnum Aureum</p>
+                <p class="image-price">$15.00</p>
+              </div>
+            </div>
+            <div class="gallery-container swiper-slide">
+              <figure class="gallery-item">
+                <img src="{% static "img/monstera_deliciosa_0.jpg" %}" alt="Monstera Deliciosa Flower">
+                <img src="{% static "img/monstera_deliciosa_1.jpg" %}" alt="Monstera Deliciosa Flower" class="img-hover">
+              </figure>
+              <div class="gallery-item--description">
+                <p class="image-name">Monstera Deliciosa</p>
+                <p class="image-price">$9.00</p>
+              </div>
+            </div>
+            <div class="gallery-container swiper-slide">
+              <figure class="gallery-item">
+                <img src="{% static "img/crassula_ovata_maruba_0.jpg" %}" alt="Crassula Ovata Maruba Nishiki">
+                <img src="{% static "img/crassula_ovata_maruba_1.jpg" %}" alt="Crassula Ovata Maruba Nishiki" class="img-hover">
+              </figure>
+              <div class="gallery-item--description">
+                <p class="image-name">Crassula Ovata Maruba Nishiki</p>
+                <p class="image-price">$17.00</p>
+              </div>
+            </div>
+            <div class="gallery-container swiper-slide">
+              <figure class="gallery-item">
+                <img src="{% static "img/zamioculcas_zamiifolia_0.jpg" %}" alt="Zamioculcas Zamiifolia Flower">
+                <img src="{% static "img/zamioculcas_zamiifolia_1.jpg" %}" alt="Zamioculcas Zamiifolia Flower" class="img-hover">
+              </figure>
+              <div class="gallery-item--description">
+                <p class="image-name">Zamioculcas Zamiifolia</p>
+                <p class="image-price">$13.00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-button-next swiper-btn"></div>
+        <div class="swiper-button-prev swiper-btn"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <h2 class="heading heading--about">O nas</h2>
+      <p class="about--quote">
+        Czasami każdy z nas ma takie chwile, że nie ma czasu, aby robić zakupy... dlatego powstaliśmy <span>my</span>.
+        <br>
+        Oferujemy szeroką gamę roślin z możliwością dostawy nawet tego samego dnia!
+      </p>
+      <div class="about-container">
+        <div class="about--text">
+          <h3 class="subheading--about">Niesiemy pomoc osobom <span>zabieganym</span></h3>
+          <p>
+            Jesteśmy dumni z naszej szybkiej dostawy, szczególnie na terenie Wrocławia. Zamówienia złożone u nas mogą dotrzeć nawet tego samego
+            dnia, dostarczając <span>Tobie</span> świeżość natury bez opóźnień.
+            Niezależnie od tego, czy szukasz małego kaktusa do biura, efektownej palmy do salonu czy
+            subtelnego bukietu kwiatów doniczkowych na prezent – mamy to wszystko i jeszcze więcej!
+          </p>
+          <p>
+Pracujemy z pasją, aby dostarczyć Ci nie tylko rośliny, ale także radość i pozytywne doświadczenie z zakupów online. Wierzymy, że zielenią można urozmaicić życie, dlatego staramy się uczynić to dostępnym dla każdego, bez względu na doświadczenie związane z roślinami.
+          </p>
+          <p>
+            Rozgość się w naszym sklepie, odkryj piękno natury i pozwól, aby rośliny wzbogaciły Twój dom i codzienność. Dziękujemy, że jesteś z nami w tej zielonej podróży!
+            <br>
+            Zielone pozdrowienia,
+            <span>Floresta Team</span>
+          </p>
+        </div>
+        <div class="about--photo">
+          <img src="{% static "img/aboutphoto.jpg" %}" alt="About photo">
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <h2 class="heading heading--contact">Gdzie nas znajdziesz?</h2>
+      <div class="map-container">
+        <div id="map"></div>
+        <div class="map-info">
+          <div class="map-info--box">
+            <p class="map-info--heading">Nazwa ulicy</p>
+            <p class="map-info--text">Fabryczna</p>
+          </div>
+          <div class="map-info--box">
+            <p class="map-info--heading">Numer budynku</p>
+            <p class="map-info--text">14</p>
+          </div>
+          <div class="map-info--box">
+            <p class="map-info--heading">Miasto</p>
+            <p class="map-info--text">Wrocław</p>
+          </div>
+          <div class="map-info--box">
+            <p class="map-info--heading">Kod pocztowy</p>
+            <p class="map-info--text">50-001</p>
+          </div>
+          <div class="map-info--box">
+            <p class="map-info--heading">Godziny otwarcia</p>
+            <p class="map-info--text">Poniedziałek &dash; Sobota</p>
+            <p class="map-info--text">09:00 &dash; 19:00</p>
+            <p class="map-info--text"><strong>Niedziela nieczynne</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="goals-section">
+      <h2 class="heading heading--goals">Nasze cele</h2>
+      <div class="goals-container">
+        <div class="goal">
+          <ion-icon name="flower-outline" class="icon--goal"></ion-icon>
+          <h3 class="subheading--goal">Szeroki wybór roślin</h3>
+          <p>Odkryj nasze bogactwo natury! W naszym sklepie znajdziesz różnorodność roślin, które doskonale wpasują się w każdy zakątek Twojego domu. Od małych kaktusów po imponujące palmy - wybór jest naprawdę szeroki!</p>
+        </div>
+        <div class="goal">
+          <ion-icon name="people-outline" class="icon--goal"></ion-icon>
+          <h3 class="subheading--goal">Ludzie z pasją</h3>
+          <p>Za naszym sklepem stoi zespół ludzi z prawdziwą pasją do roślin. Jesteśmy tutaj, aby dzielić się naszą wiedzą i entuzjazmem. Gotowi służyć pomocą i inspiracją, aby Twoje rośliny rosły w pełnej krasie!</p>
+        </div>
+        <div class="goal">
+          <ion-icon name="cube-outline" class="icon--goal"></ion-icon>
+          <h3 class="subheading--goal">Ekspresowa wysyłka</h3>
+          <p>Dla nas czas ma znaczenie! Zamówienia złożone u nas mogą dotrzeć nawet tego samego dnia, zwłaszcza jeśli jesteś w magicznym Wrocławiu. Szybka dostawa to nasza odpowiedź na Twoje natychmiastowe pragnienie zieleni.</p>
+        </div>
+        <div class="goal">
+          <ion-icon name="happy-outline" class="icon--goal"></ion-icon>
+          <h3 class="subheading--goal">Gwarancja satysfakcji</h3>
+          <p>Twoje zadowolenie to nasz priorytet. Jesteśmy pewni jakości naszych roślin i obsługi, dlatego oferujemy gwarancję satysfakcji. Jeśli coś nie spełnia Twoich oczekiwań, jesteśmy tu, aby to naprawić. Twój uśmiech jest dla nas najważniejszy!</p>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock content %}

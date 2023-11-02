@@ -1,0 +1,19 @@
+@use "./variables" as *;
+@use "./colors" as *;
+@use "./font-sizes" as *;
+
+%btn-green {
+  font-size: $fs-7;
+  font-family: inherit;
+  color: #fff;
+  background-color: $primary-dark;
+  padding: 1rem;
+  border: none;
+  border-radius: $br-normal;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $primary;
+  }
+}

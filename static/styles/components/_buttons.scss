@@ -1,0 +1,5 @@
+@use "../abstracts" as *;
+
+.btn--sign-in, .btn--store {
+  @extend %btn-green;
+}

@@ -1,0 +1,9 @@
+@use "../abstracts" as *;
+
+.heading {
+  font-size: $fs-5;
+  font-weight: 500;
+  color: $secondary;
+  text-align: center;
+  padding-bottom: 5.2rem;
+}
