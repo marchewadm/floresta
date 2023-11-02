@@ -2,18 +2,33 @@
 @use "./colors" as *;
 @use "./font-sizes" as *;
 
-%btn-green {
+%btn {
   font-size: $fs-7;
   font-family: inherit;
-  color: #fff;
-  background-color: $primary-dark;
   padding: 1rem;
   border: none;
   border-radius: $br-normal;
   cursor: pointer;
   transition: all 0.3s;
+}
+
+%btn--green {
+  @extend %btn;
+  color: #fff;
+  background-color: $primary-dark;
 
   &:hover {
     background-color: $primary;
+  }
+}
+
+%btn--white {
+  @extend %btn;
+  color: $secondary;
+  background-color: #fff;
+
+  &:hover {
+    color: darken($secondary, 10%);
+    background-color: darken(#fff, 7%);
   }
 }

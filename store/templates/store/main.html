@@ -12,78 +12,80 @@
   <link rel="stylesheet" href="{% static 'styles/index.css' %}" type="text/css">
 </head>
 <body>
-<header class="header-section">
-  <a href="#">
-    <img src="{% static 'img/logo.png' %}" alt="Floresta logo" class="logo">
-  </a>
+<div class="page-container">
+  <header class="header-section">
+    <a href="#">
+      <img src="{% static 'img/logo.png' %}" alt="Floresta logo" class="logo">
+    </a>
 
-  <nav class="main-nav">
-    <ul class="main-nav--list">
-      <li><a href="#" class="main-nav--link">Nowości</a></li>
-      <li><a href="#" class="main-nav--link">Sklep</a></li>
-      <li><a href="#" class="main-nav--link">O nas</a></li>
-      <li><a href="#" class="main-nav--link">Kontakt</a></li>
-    </ul>
-  </nav>
-
-  <div class="account">
-    <ion-icon name="cart-outline" class="icon--cart"></ion-icon>
-    <button class="btn btn--sign-in">Zaloguj się</button>
-  </div>
-</header>
-
-{% block content %}
-
-{% endblock content %}
-
-<footer class="footer-section">
-  <div class="footer-container">
-    <div class="footer--box">
-      <a href="#">
-        <img src="{% static "img/logo_footer.png" %}" alt="Floresta footer logo" class="logo">
-      </a>
-      <ul class="footer--socials">
-        <a href="#" class="footer--link">
-          <ion-icon name="logo-instagram" class="icon--footer"></ion-icon>
-        </a>
-        <a href="#" class="footer--link">
-          <ion-icon name="logo-facebook" class="icon--footer"></ion-icon>
-        </a>
-        <a href="#" class="footer--link">
-          <ion-icon name="logo-twitter" class="icon--footer"></ion-icon>
-        </a>
+    <nav class="main-nav">
+      <ul class="main-nav--list">
+        <li><a href="#" class="main-nav--link">Nowości</a></li>
+        <li><a href="#" class="main-nav--link">Sklep</a></li>
+        <li><a href="#" class="main-nav--link">O nas</a></li>
+        <li><a href="#" class="main-nav--link">Kontakt</a></li>
       </ul>
-      <p class="copyright">Copyright &copy; <span class="footer--year">2023</span> Floresta <br> Wszelkie prawa zastrzeżone.</p>
+    </nav>
+
+    <div class="account">
+      <ion-icon name="cart-outline" class="icon--cart"></ion-icon>
+      <button class="btn btn--sign-in">Zaloguj się</button>
     </div>
-    <div class="footer--box">
-      <p class="heading--footer">Kontakt</p>
-      <addres class="footer--address-box">
-        <p class="footer-address">ul. Fabryczna 14, 50-001 Wrocław</p>
-        <p>
-          <a href="" class="footer--link" href="tel:777-888-999">777-888-999</a>
-          <br>
-          <a href="" class="footer--link" href="mailto:kontakt@floresta.com">kontakt@floresta.com</a>
-        </p>
-      </addres>
+  </header>
+
+  {% block content %}
+
+  {% endblock content %}
+
+  <footer class="footer-section">
+    <div class="footer-container">
+      <div class="footer--box">
+        <a href="#">
+          <img src="{% static "img/logo_footer.png" %}" alt="Floresta footer logo" class="logo">
+        </a>
+        <ul class="footer--socials">
+          <a href="#" class="footer--link">
+            <ion-icon name="logo-instagram" class="icon--footer"></ion-icon>
+          </a>
+          <a href="#" class="footer--link">
+            <ion-icon name="logo-facebook" class="icon--footer"></ion-icon>
+          </a>
+          <a href="#" class="footer--link">
+            <ion-icon name="logo-twitter" class="icon--footer"></ion-icon>
+          </a>
+        </ul>
+        <p class="copyright">Copyright &copy; <span class="footer--year">2023</span> Floresta <br> Wszelkie prawa zastrzeżone.</p>
+      </div>
+      <div class="footer--box">
+        <p class="heading--footer">Kontakt</p>
+        <addres class="footer--address-box">
+          <p class="footer-address">ul. Fabryczna 14, 50-001 Wrocław</p>
+          <p>
+            <a href="" class="footer--link" href="tel:777-888-999">777-888-999</a>
+            <br>
+            <a href="" class="footer--link" href="mailto:kontakt@floresta.com">kontakt@floresta.com</a>
+          </p>
+        </addres>
+      </div>
+      <div class="footer--box">
+        <p class="heading--footer">Przydatne linki</p>
+        <ul class="footer--links">
+          <li><a href="#" class="footer--link">Regulamin</a></li>
+          <li><a href="#" class="footer--link">Płatności</a></li>
+          <li><a href="#" class="footer--link">Odbiór osobisty</a></li>
+          <li><a href="#" class="footer--link">Realizacja zamówień</a></li>
+        </ul>
+      </div>
+      <div class="footer--box">
+        <p class="heading--footer">Konto</p>
+        <ul class="footer--links">
+          <li><a href="#" class="footer--link">Zaloguj się</a></li>
+          <li><a href="#" class="footer--link">Załóż konto</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer--box">
-      <p class="heading--footer">Przydatne linki</p>
-      <ul class="footer--links">
-        <li><a href="#" class="footer--link">Regulamin</a></li>
-        <li><a href="#" class="footer--link">Płatności</a></li>
-        <li><a href="#" class="footer--link">Odbiór osobisty</a></li>
-        <li><a href="#" class="footer--link">Realizacja zamówień</a></li>
-      </ul>
-    </div>
-    <div class="footer--box">
-      <p class="heading--footer">Konto</p>
-      <ul class="footer--links">
-        <li><a href="#" class="footer--link">Zaloguj się</a></li>
-        <li><a href="#" class="footer--link">Załóż konto</a></li>
-      </ul>
-    </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -91,5 +93,6 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="{% static "js/swiper.js" %}"></script>
 <script src="{% static "js/map.js" %}"></script>
+<script src="{% static "js/year.js" %}"></script>
 </body>
 </html>

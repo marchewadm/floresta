@@ -6,6 +6,16 @@ def index(request):
     return render(request, 'store/index.html', context)
 
 
+def signin(request):
+    context = {}
+    return render(request, 'store/signin.html', context)
+
+
+def signup(request):
+    context = {}
+    return render(request, 'store/signup.html', context)
+
+
 def store(request):
     context = {}
     return render(request, 'store/store.html', context)

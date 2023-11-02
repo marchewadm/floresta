@@ -1,5 +1,9 @@
 @use "../abstracts" as *;
 
-.btn--sign-in, .btn--store {
-  @extend %btn-green;
+.btn--sign-in, .btn--store, .account--sign-up, .account--sign-in {
+  @extend %btn--green;
+}
+
+.quote-account--sign-in, .quote-account--sign-up {
+  @extend %btn--white;
 }

@@ -16,4 +16,6 @@
 @use "./layout/footer";
 
 // -- VIEWS
+@use "./views/main";
+@use "./views/account";
 @use "./views/home";

@@ -1,0 +1,46 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+  <main class="main--account-action">
+    <section class="account-section">
+      <div class="account--box">
+        <form action="" class="account--form">
+          <div>
+            <label for="name">Jak się nazywasz?</label>
+            <input type="text" placeholder="Twoje imię...">
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" placeholder="jan.kowalski@example.com">
+          </div>
+          <div>
+            <label for="password">Hasło</label>
+            <input type="password" placeholder="********">
+          </div>
+          <div>
+            <label for="password">Powtórz hasło</label>
+            <input type="password" placeholder="********">
+          </div>
+          <div>
+            <button class="account--sign-up">Zarejestruj się</button>
+          </div>
+        </form>
+      </div>
+      <div class="quote--box">
+        <h3 class="heading--account">Witaj!</h3>
+        <p>
+          Cieszymy się, że zdecydowałeś/aś się do nas dołączyć. Jesteśmy przekonani, że odkryjesz u nas nie tylko rośliny, ale także inspirację do stworzenia swojego rajskiego ogrodu w domu.
+          <br>
+          Zakładając konto, otwierasz przed sobą drzwi do nieograniczonych możliwości aranżacyjnych.
+          Czekają na Ciebie nie tylko piękne kwiaty doniczkowe, ale także egzotyczne rośliny, które dodadzą Twojemu wnętrzu wyjątkowego charakteru.
+          <br>
+          Mamy nadzieję, że Twoje zakupy u nas spełnią wszystkie oczekiwania, a rośliny staną się nieodłączną częścią Twojego domowego otoczenia.
+          <br>
+          Życzymy udanych zakupów!
+        </p>
+        <button class="quote-account--sign-in">Masz już konto? Zaloguj się!</button>
+      </div>
+    </section>
+  </main>
+{% endblock content %}

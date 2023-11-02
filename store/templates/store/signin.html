@@ -1,0 +1,34 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+  <main class="main--account-action">
+    <section class="account-section">
+      <div class="account--box">
+        <form action="" class="account--form">
+          <div>
+            <label for="email">Email</label>
+            <input type="email" placeholder="jan.kowalski@example.com">
+          </div>
+          <div>
+            <label for="password">Hasło</label>
+            <input type="password" placeholder="********">
+          </div>
+          <div>
+            <button class="account--sign-in">Zaloguj się</button>
+          </div>
+        </form>
+      </div>
+      <div class="quote--box">
+        <h3 class="heading--account">Witaj ponownie!</h3>
+        <p>
+          Cieszymy się, że ponownie korzystasz z naszego sklepu online. Twój powrót sprawia nam ogromną radość, a my jesteśmy gotowi, aby
+          uczynić Twoje zakupy jeszcze bardziej satysfakcjonującymi.
+          <br>
+          Dziękujemy, że jesteś z nami!
+        </p>
+        <button class="quote-account--sign-up">Nie masz jeszcze konta? Zarejestruj się!</button>
+      </div>
+    </section>
+  </main>
+{% endblock content %}
