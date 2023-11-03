@@ -17,5 +17,8 @@
 
 // -- VIEWS
 @use "./views/main";
+@use "./views/store";
+@use "./views/product";
 @use "./views/account";
 @use "./views/home";
+@use "./views/cart";

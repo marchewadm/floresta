@@ -32,3 +32,14 @@
     background-color: darken(#fff, 7%);
   }
 }
+
+%btn--grey {
+  @extend %btn;
+  color: $secondary;
+  background-color: darken(#fff, 5%);
+
+  &:hover {
+    color: #fff;
+    background-color: $primary-dark;
+  }
+}

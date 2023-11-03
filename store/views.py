@@ -21,6 +21,11 @@ def store(request):
     return render(request, 'store/store.html', context)
 
 
+def product(request):
+    context = {}
+    return render(request, 'store/product.html', context)
+
+
 def cart(request):
     context = {}
     return render(request, 'store/cart.html', context)

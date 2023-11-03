@@ -1,4 +1,53 @@
+{% extends 'store/main.html' %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'styles/index.css' %}" type="text/css">
+{% block content %}
+  <main class="main--store">
+    <section class="categories-section">
+      <h2 class="heading heading--categories">Kategorie</h2>
+      <nav class="categories--nav">
+        <ul class="categories--list">
+          <li><a href="#">Wszystkie rośliny</a></li>
+          <li><a href="#" class="category--active">Nowości</a></li>
+          <li><a href="#">Maluszki</a></li>
+          <li><a href="#">Kaktusy i sukulenty</a></li>
+          <li><a href="#">Łatwe w utrzymaniu</a></li>
+          <li><a href="#">Bezpieczne dla zwierząt</a></li>
+        </ul>
+      </nav>
+    </section>
 
-<h3>store</h3>
+    <section class="store-products-section">
+      <h2 class="heading heading--products">Nowości</h2>
+      <div class="store-products-container">
+        <div class="gallery-container product">
+          <figure class="gallery-item">
+            <img src="{% static "img/epipremnum_aureum_0.jpg" %}" alt="Epipremnum Aureum Flower">
+            <img src="{% static "img/epipremnum_aureum_1.jpg" %}" alt="Epipremnum Aureum Flower" class="img-hover">
+          </figure>
+          <div class="gallery-item--description">
+            <p class="image-name">Epipremnum Aureum</p>
+            <p class="image-price">15.00 zł</p>
+          </div>
+          <div class="add-to-cart">
+            <button class="add-to-cart--btn">
+              <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
+              <span>Dodaj do koszyka</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="pagination">
+        <a href="" class="pagination-btn"><ion-icon name="chevron-back-outline"></ion-icon></a>
+        <a href="" class="pagination-number pagination-active">1</a>
+        <a href="" class="pagination-number">2</a>
+        <a href="" class="pagination-number">3</a>
+        <a href="" class="pagination-number">4</a>
+        <a href="" class="pagination-number">5</a>
+        <a href="" class="pagination-number">6</a>
+        <a href="" class="pagination-number">7</a>
+        <a href="" class="pagination-number">8</a>
+        <a href="" class="pagination-btn"><ion-icon name="chevron-forward-outline"></ion-icon></a>
+      </div>
+    </section>
+  </main>
+{% endblock content %}
