@@ -1,0 +1,87 @@
+@use "../abstracts" as *;
+
+.personal-section, .total-section {
+  padding: 3rem;
+  border-radius: $br-normal;
+  border: $border-solid;
+  box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.1);
+}
+
+.total-section {
+  height: fit-content;
+}
+
+.main--checkout {
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 3rem;
+}
+
+.form--personal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+
+  div {
+    display: inline-grid;
+
+    &:nth-child(3), &:last-child {
+      grid-column: 1 / span 2;
+    }
+
+    label {
+      font-size: $fs-7;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.order-information {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.heading--order {
+  font-size: $fs-7;
+  font-weight: 500;
+  margin-right: 2rem;
+}
+
+.edit-cart {
+  font-size: 1.4rem;
+
+  &:link, &:visited {
+    color: $primary;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  &:hover, &:active {
+    color: $primary-dark;
+  }
+}
+
+.prices--box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.price, .total-price--box, .header--order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-name, .price-amount {
+  font-size: $fs-8;
+}
+
+.total-price--box {
+  font-weight: 500;
+}

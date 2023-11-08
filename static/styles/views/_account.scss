@@ -32,20 +32,6 @@
       font-weight: 500;
       letter-spacing: 0.2px;
     }
-
-    input {
-      font-family: inherit;
-      color: inherit;
-      background-color: darken(#fff, 5%);
-      padding: 1.2rem;
-      border: none;
-      border-radius: $br-normal;
-      letter-spacing: 1px;
-
-      &::placeholder {
-        color: lighten($secondary, 20%);
-      }
-    }
   }
 }
 

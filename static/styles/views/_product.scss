@@ -7,14 +7,15 @@
 
 .product-desc-section {
   padding: 6rem;
-  border: 1px solid #d2d2d2;
+  border: $border-solid;
   border-radius: $br-normal;
+  box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 3rem;
 }
 
-.heading--product-name{
+.heading--product-name {
   text-align: left;
   padding-bottom: 1rem;
 }
@@ -39,21 +40,6 @@
     margin-top: auto;
     align-items: center;
     justify-content: left;
-
-    input {
-      font-family: inherit;
-      color: inherit;
-      background-color: darken(#fff, 5%);
-      width: 10%;
-      padding: 1.2rem;
-      border: none;
-      border-radius: $br-normal;
-      letter-spacing: 1px;
-
-      &::placeholder {
-        color: lighten($secondary, 20%);
-      }
-    }
 
     p {
       font-size: $fs-8;

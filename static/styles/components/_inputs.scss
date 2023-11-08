@@ -1,0 +1,16 @@
+@use "../abstracts" as *;
+
+.add-to-cart input {
+  @extend %input-number;
+  width: 15%;
+}
+
+.items--cart .gallery-container input {
+  @extend %input-number;
+  width: 30%;
+  margin-right: 0.5rem;
+}
+
+.form--personal div input, .account--form div input {
+  @extend %input-text;
+}

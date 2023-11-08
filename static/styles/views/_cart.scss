@@ -6,8 +6,9 @@
 }
 
 .cart-section {
-  box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.1);
   border-radius: $br-normal;
+  border: $border-solid;
+  box-shadow: 1px 3px 10px 1px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: 1fr auto;
   column-gap: 5rem;
@@ -18,7 +19,7 @@
 }
 
 .items--cart {
-  padding: 2rem;
+  padding: 2rem 2rem 2rem 0;
   max-height: 40vh;
   min-width: 50rem;
   overflow: scroll;
@@ -33,21 +34,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    input {
-      font-family: inherit;
-      color: inherit;
-      background-color: darken(#fff, 5%);
-      width: 25%;
-      margin-right: 0.5rem;
-      padding: 1rem;
-      border: none;
-      border-radius: $br-normal;
-
-      &::placeholder {
-        color: lighten($secondary, 20%);
-      }
     }
 
     .pieces {
@@ -134,6 +120,7 @@
 // summary
 .summary {
   color: #fff;
+  border-left: $border-solid;
   background-color: $primary-dark;
   border-top-right-radius: $br-normal;
   border-bottom-right-radius: $br-normal;

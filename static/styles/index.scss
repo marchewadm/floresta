@@ -10,6 +10,8 @@
 // -- COMPONENTS
 @use "./components/buttons";
 @use "./components/heading";
+@use "./components/inputs";
+@use "./components/pagination";
 
 // -- LAYOUT
 @use "./layout/navigation";
@@ -22,3 +24,4 @@
 @use "./views/account";
 @use "./views/home";
 @use "./views/cart";
+@use "./views/checkout";

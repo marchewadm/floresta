@@ -1,1 +1,68 @@
-<h3>checkout</h3>
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+  <main class="main--checkout">
+    <section class="personal-section">
+      <div class="personal-information">
+        <form action="" class="form--personal">
+          <div>
+            <label for="name">Imię</label>
+            <input type="text" placeholder="Twoje imię..." required>
+          </div>
+          <div>
+            <label for="last-name">Nazwisko</label>
+            <input type="text" placeholder="Twoje nazwisko..." required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" placeholder="jan.kowalski@example.com" required>
+          </div>
+          <div>
+            <label for="street">Ulica</label>
+            <input type="text" placeholder="ul. Wrocławska 13/34" required>
+          </div>
+          <div>
+            <label for="city">Miasto</label>
+            <input type="text" placeholder="Wrocław" required>
+          </div>
+          <div>
+            <label for="postal-code">Kod pocztowy</label>
+            <input type="text" placeholder="00-000" required>
+          </div>
+          <div>
+            <label for="phone">Numer telefonu (opcjonalne)</label>
+            <input type="text" placeholder="000-111-222">
+          </div>
+          <div>
+            <button class="proceed-payment--btn">Dokonaj płatności</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="total-section">
+      <div class="order-information">
+        <div class="header--order">
+          <h2 class="heading--order">Twoje zamówienie</h2>
+          <a href="#" class="edit-cart">Edytuj koszyk</a>
+        </div>
+
+        <div class="prices--box">
+          <div class="price">
+            <p class="price-name">Produkty:</p>
+            <p class="price-amount">235.00 zł</p>
+          </div>
+          <div class="price">
+            <p class="price-name">Dostawa:</p>
+            <p class="price-amount">9.99 zł</p>
+          </div>
+        </div>
+
+        <div class="total-price--box">
+          <p class="price-name">Łączna cena:</p>
+          <p class="price-amount">244.99 zł</p>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock content %}

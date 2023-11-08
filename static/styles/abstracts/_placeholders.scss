@@ -2,6 +2,7 @@
 @use "./colors" as *;
 @use "./font-sizes" as *;
 
+// --- BUTTONS ---
 %btn {
   font-size: $fs-7;
   font-family: inherit;
@@ -42,4 +43,29 @@
     color: #fff;
     background-color: $primary-dark;
   }
+}
+
+// --- INPUT ---
+%input {
+  font-family: inherit;
+  color: inherit;
+  background-color: darken(#fff, 5%);
+  border: none;
+  border-radius: $br-normal;
+
+  &::placeholder {
+    color: lighten($secondary, 20%);
+  }
+}
+
+%input-number {
+  @extend %input;
+  padding: 1rem;
+  letter-spacing: 0.2px;
+}
+
+%input-text {
+  @extend %input;
+  padding: 1.2rem;
+  letter-spacing: 0.5px;
 }
