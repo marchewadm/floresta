@@ -8,10 +8,12 @@
 @use "./abstracts/placeholders";
 
 // -- COMPONENTS
+@use "./components/lazyload";
 @use "./components/buttons";
 @use "./components/heading";
 @use "./components/inputs";
 @use "./components/pagination";
+@use "./components/productbox";
 
 // -- LAYOUT
 @use "./layout/navigation";

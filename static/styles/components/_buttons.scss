@@ -18,3 +18,9 @@
     font-size: $fs-8;
   }
 }
+
+.btn-checkout {
+  @extend %btn--white;
+  text-decoration: none;
+  text-align: center;
+}

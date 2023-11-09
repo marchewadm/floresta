@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&display=swap");
-.add-to-cart--btn, .btn-checkout, .quote-account--sign-in, .quote-account--sign-up, .btn--sign-in, .btn--store, .account--sign-up, .account--sign-in, .proceed-payment--btn {
+.add-to-cart--btn, .quote-account--sign-in, .quote-account--sign-up, .btn-checkout, .btn--sign-in, .btn--store, .account--sign-up, .account--sign-in, .proceed-payment--btn {
   font-size: 1.8rem;
   font-family: inherit;
   padding: 1rem;
@@ -17,11 +17,11 @@
   background-color: #2cbb52;
 }
 
-.btn-checkout, .quote-account--sign-in, .quote-account--sign-up {
+.quote-account--sign-in, .quote-account--sign-up, .btn-checkout {
   color: #37383b;
   background-color: #fff;
 }
-.btn-checkout:hover, .quote-account--sign-in:hover, .quote-account--sign-up:hover {
+.quote-account--sign-in:hover, .quote-account--sign-up:hover, .btn-checkout:hover {
   color: #1e1f21;
   background-color: #ededed;
 }
@@ -68,6 +68,11 @@ html {
   color: #37383b;
 }
 
+.lazy {
+  filter: blur(2px);
+  transition: filter 0.2s;
+}
+
 .add-to-cart--btn {
   display: flex;
   align-items: center;
@@ -75,6 +80,11 @@ html {
 }
 .add-to-cart--btn span {
   font-size: 1.6rem;
+}
+
+.btn-checkout {
+  text-decoration: none;
+  text-align: center;
 }
 
 .heading {
@@ -129,6 +139,36 @@ html {
 .pagination-active {
   color: #fff;
   background-color: #27a649;
+}
+
+.gallery-item {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.gallery-item img {
+  height: 30rem;
+  width: 30rem;
+  cursor: pointer;
+}
+
+.img-hover {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+.img-hover:hover {
+  opacity: 1;
+}
+
+.gallery-item--description {
+  font-size: 1.6rem;
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .header-section {
@@ -455,7 +495,7 @@ html {
 }
 
 .hero {
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("../img/bgphoto.jpg");
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("../img/main/bgphoto.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -494,36 +534,6 @@ html {
 .slider-content {
   margin: 0 4rem;
   overflow: hidden;
-}
-
-.gallery-item {
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.gallery-item img {
-  height: 30rem;
-  width: 30rem;
-  cursor: pointer;
-}
-
-.img-hover {
-  position: absolute;
-  opacity: 0;
-  transition: opacity 0.3s ease-in;
-}
-.img-hover:hover {
-  opacity: 1;
-}
-
-.gallery-item--description {
-  font-size: 1.6rem;
-  margin-top: 0.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
 }
 
 .swiper-btn {
@@ -867,11 +877,6 @@ html {
   text-transform: uppercase;
   letter-spacing: 0.2px;
   margin-bottom: 0.5rem;
-}
-
-.btn-checkout {
-  text-decoration: none;
-  text-align: center;
 }
 
 .personal-section, .total-section {

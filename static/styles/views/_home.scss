@@ -1,14 +1,13 @@
 @use "../abstracts" as *;
 
 // ----- INDEX.HTML PAGE -----
-
 .welcome-section {
   margin-bottom: 7.8rem;
 }
 
 .hero {
   // URL path is actually fitted to index.css compiled file so it may look broken inside of SCSS file
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("../img/bgphoto.jpg");
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("../img/main/bgphoto.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -49,38 +48,6 @@
 .slider-content {
   margin: 0 4rem;
   overflow: hidden;
-}
-
-.gallery-item {
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.gallery-item img {
-  height: 30rem;
-  width: 30rem;
-  // images to resize (300px x 300px)
-  cursor: pointer;
-}
-
-.img-hover {
-  position: absolute;
-  opacity: 0;
-  transition: opacity 0.3s ease-in;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
-.gallery-item--description {
-  font-size: $fs-8;
-  margin-top: 0.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
 }
 
 // -- SLIDER NEW ARRIVALS
