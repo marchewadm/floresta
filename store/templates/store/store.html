@@ -6,8 +6,8 @@
       <h2 class="heading heading--categories">Kategorie</h2>
       <nav class="categories--nav">
         <ul class="categories--list">
-          <li><a href="#">Wszystkie rośliny</a></li>
-          <li><a href="#" class="category--active">Nowości</a></li>
+          <li><a href="#" class="category--active">Wszystkie rośliny</a></li>
+          <li><a href="#">Nowości</a></li>
           <li><a href="#">Maluszki</a></li>
           <li><a href="#">Kaktusy i sukulenty</a></li>
           <li><a href="#">Łatwe w utrzymaniu</a></li>
@@ -17,24 +17,26 @@
     </section>
 
     <section class="store-products-section">
-      <h2 class="heading heading--products">Nowości</h2>
+      <h2 class="heading heading--products">Wszystkie rośliny</h2>
       <div class="store-products-container">
-        <div class="gallery-container product">
-          <figure class="gallery-item">
-            <img data-src="{% static "img/products/epipremnum_aureum_0.jpg" %}" alt="Epipremnum Aureum Flower" class="lazy">
-            <img data-src="{% static "img/products/epipremnum_aureum_1.jpg" %}" alt="Epipremnum Aureum Flower" class="img-hover lazy">
-          </figure>
-          <div class="gallery-item--description">
-            <p class="image-name">Epipremnum Aureum</p>
-            <p class="image-price">15.00 zł</p>
+        {% for product in products %}
+          <div class="gallery-container product">
+            <figure class="gallery-item">
+              <img data-src="{{ product.image_url }}" alt="{{ product.name }}" class="lazy">
+              <img data-src="{{ product.second_image_url }}" alt="{{ product.name }}" class="img-hover lazy">
+            </figure>
+            <div class="gallery-item--description">
+              <p class="image-name">{{ product.name }}</p>
+              <p class="image-price">{{ product.price | floatformat:2 }} zł</p>
+            </div>
+            <div class="add-to-cart">
+              <button class="add-to-cart--btn">
+                <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
+                <span>Dodaj do koszyka</span>
+              </button>
+            </div>
           </div>
-          <div class="add-to-cart">
-            <button class="add-to-cart--btn">
-              <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
-              <span>Dodaj do koszyka</span>
-            </button>
-          </div>
-        </div>
+        {% endfor %}
       </div>
       <div class="pagination">
         <a href="" class="pagination-btn"><ion-icon name="chevron-back-outline"></ion-icon></a>

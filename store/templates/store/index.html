@@ -17,46 +17,18 @@
       <div class="products-slider swiper">
         <div class="slider-content">
           <div class="gallery swiper-wrapper">
-            <div class="gallery-container swiper-slide">
-              <figure class="gallery-item">
-                <img data-src="{% static "img/products/epipremnum_aureum_0.jpg" %}" alt="Epipremnum Aureum Flower" class="lazy">
-                <img data-src="{% static "img/products/epipremnum_aureum_1.jpg" %}" alt="Epipremnum Aureum Flower" class="img-hover lazy">
-              </figure>
-              <div class="gallery-item--description">
-                <p class="image-name">Epipremnum Aureum</p>
-                <p class="image-price">$15.00</p>
+            {% for product in products %}
+              <div class="gallery-container swiper-slide">
+                <figure class="gallery-item">
+                  <img data-src="{{ product.image_url }}" alt="{{ product.name }}" class="lazy">
+                  <img data-src="{{ product.second_image_url }}" alt="{{ product.name }}" class="img-hover lazy">
+                </figure>
+                <div class="gallery-item--description">
+                  <p class="image-name">{{ product.name }}</p>
+                  <p class="image-price">{{ product.price | floatformat:2 }} zł</p>
+                </div>
               </div>
-            </div>
-            <div class="gallery-container swiper-slide">
-              <figure class="gallery-item">
-                <img data-src="{% static "img/products/monstera_deliciosa_0.jpg" %}" alt="Monstera Deliciosa Flower" class="lazy">
-                <img data-src="{% static "img/products/monstera_deliciosa_1.jpg" %}" alt="Monstera Deliciosa Flower" class="img-hover lazy">
-              </figure>
-              <div class="gallery-item--description">
-                <p class="image-name">Monstera Deliciosa</p>
-                <p class="image-price">$9.00</p>
-              </div>
-            </div>
-            <div class="gallery-container swiper-slide">
-              <figure class="gallery-item">
-                <img data-src="{% static "img/products/crassula_ovata_maruba_0.jpg" %}" alt="Crassula Ovata Maruba Nishiki" class="lazy">
-                <img data-src="{% static "img/products/crassula_ovata_maruba_1.jpg" %}" alt="Crassula Ovata Maruba Nishiki" class="img-hover lazy">
-              </figure>
-              <div class="gallery-item--description">
-                <p class="image-name">Crassula Ovata Maruba Nishikdata</p>
-                <p class="image-price">$17.00</p>
-              </div>
-            </div>
-            <div class="gallery-container swiper-slide">
-              <figure class="gallery-item">
-                <img data-src="{% static "img/products/zamioculcas_zamiifolia_0.jpg" %}" alt="Zamioculcas Zamiifolia Flower" class="lazy">
-                <img data-src="{% static "img/products/zamioculcas_zamiifolia_1.jpg" %}" alt="Zamioculcas Zamiifolia Flower" class="img-hover lazy">
-              </figure>
-              <div class="gallery-item--description">
-                <p class="image-name">Zamioculcas Zamiifolia</p>
-                <p class="image-price">$13.00</p>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
         <div class="swiper-button-next swiper-btn"></div>

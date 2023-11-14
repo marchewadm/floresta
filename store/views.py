@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from .models import *
 
 
 def index(request):
-    context = {}
+    products = Product.objects.filter(new__exact=True)
+    context = {'products': products}
     return render(request, 'store/index.html', context)
 
 
@@ -17,7 +19,8 @@ def signup(request):
 
 
 def store(request):
-    context = {}
+    products = Product.objects.all()
+    context = {'products': products}
     return render(request, 'store/store.html', context)
 
 
