@@ -27,17 +27,42 @@
   .gallery-container {
     margin-bottom: 2rem;
     display: grid;
-    grid-template-columns: 0.5fr 3fr 2.5fr 0.5fr 0.5fr;
+    grid-template-columns: 0.5fr 2.5fr 2.5fr 1fr 0.5fr;
     align-items: center;
 
-    div {
+    .quantity-box {
       display: flex;
       align-items: center;
       justify-content: center;
+      //gap: 0.5rem;
     }
 
-    .pieces {
+    .quantity-btns {
+      display: flex;
+      flex-direction: column;
+
+      ion-icon {
+        font-size: $fs-6;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .icon-quantity--increase:hover {
+        color: $primary-dark;
+      }
+
+      .icon-quantity--decrease:hover {
+        color: #ce4141;
+      }
+    }
+
+    p {
       font-size: $fs-8;
+      margin-right: 0.5rem;
+
+      &:last-of-type {
+        margin-right: 1rem;
+      }
     }
   }
 
@@ -52,18 +77,27 @@
 }
 
 .product-name {
-  font-size: $fs-7;
-  margin-left: 3rem;
+  &:link, &:visited {
+    font-size: $fs-8;
+    color: inherit;
+    text-decoration: none;
+    margin-left: 3rem;
+    transition: color 0.3s;
+  }
+
+  &:hover, &:active {
+    color: $primary;
+  }
 }
 
 .remove-icon--cart {
   font-size: $fs-5;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: color 0.2s;
   justify-self: right;
 
   &:hover {
-    color: #c45151;
+    color: #ce4141;
   }
 }
 

@@ -3,9 +3,17 @@
 .pagination {
   margin-top: auto;
   display: flex;
-  align-items: center;
+  //align-items: center;
   justify-content: center;
-  gap: 1rem;
+  //gap: 1rem;
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .pagination-number {
@@ -37,4 +45,5 @@
 .pagination-active {
   color: #fff;
   background-color: $primary-dark;
+  pointer-events: none;
 }

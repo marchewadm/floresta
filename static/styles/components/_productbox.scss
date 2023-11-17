@@ -1,12 +1,12 @@
 @use "../abstracts" as *;
 
-.gallery-item {
+.gallery-item a {
   display: flex;
   justify-content: center;
   position: relative;
 }
 
-.gallery-item img {
+.gallery-item a img {
   height: 30rem;
   width: 30rem;
   // images to resize (300px x 300px)
@@ -20,6 +20,18 @@
 
   &:hover {
     opacity: 1;
+  }
+}
+
+.image-name {
+  &:link, &:visited {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  &:hover, &:active {
+    color: $primary;
   }
 }
 

@@ -1,5 +1,6 @@
 {% extends 'store/main.html' %}
 {% load static %}
+
 {% block content %}
   <main class="main--checkout">
     <section class="personal-section">
@@ -44,23 +45,23 @@
       <div class="order-information">
         <div class="header--order">
           <h2 class="heading--order">Twoje zamówienie</h2>
-          <a href="#" class="edit-cart">Edytuj koszyk</a>
+          <a href="{% url 'cart' %}" class="edit-cart">Edytuj koszyk</a>
         </div>
 
         <div class="prices--box">
           <div class="price">
             <p class="price-name">Produkty:</p>
-            <p class="price-amount">235.00 zł</p>
+            <p class="price-amount">{{ order.get_cart_total | floatformat:2 }} zł</p>
           </div>
           <div class="price">
             <p class="price-name">Dostawa:</p>
-            <p class="price-amount">9.99 zł</p>
+            <p class="price-amount">{{ order.shipper.price | floatformat:2 }} zł</p>
           </div>
         </div>
 
         <div class="total-price--box">
           <p class="price-name">Łączna cena:</p>
-          <p class="price-amount">244.99 zł</p>
+          <p class="price-amount">{{ order.get_total_price | floatformat:2 }} zł</p>
         </div>
       </div>
     </section>

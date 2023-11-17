@@ -6,13 +6,15 @@
     <section class="product-desc-section">
       <div class="gallery-container product">
         <figure class="gallery-item">
-          <img data-src="{% static "img/products/epipremnum_aureum_0.jpg" %}" alt="Epipremnum Aureum Flower" class="lazy">
-          <img data-src="{% static "img/products/epipremnum_aureum_1.jpg" %}" alt="Epipremnum Aureum Flower" class="img-hover lazy">
+          <a href="#">
+            <img data-src="{{ product_obj.image_url }}" alt="{{ product_obj.name }}" class="lazy">
+            <img data-src="{{ product_obj.second_image_url }}" alt="{{ product_obj.name }}" class="img-hover lazy">
+          </a>
         </figure>
       </div>
       <div class="product-box">
-        <h2 class="heading heading--product-name">Epipremnum Aureum</h2>
-        <p class="product-price">15.00 zł</p>
+        <h2 class="heading heading--product-name">{{ product_obj.name }}</h2>
+        <p class="product-price">{{ product_obj.price | floatformat:2 }} zł</p>
         <p class="product-description">
           Epipremnum Aureum, znany również jako Pothos, to niezwykle wdzięczna roślina, idealna dla każdego miłośnika
           zieleni. Jego soczyste, zielone liście zdobią pomieszczenie, nadając mu świeżości i uroku. Łatwa w pielęgnacji, roślina ta jest
@@ -22,7 +24,7 @@
         <div class="add-to-cart">
           <input type="number" min="1" value="1" placeholder="1">
           <p>szt.</p>
-          <button class="add-to-cart--btn">
+          <button class="add-to-cart--btn update-cart" data-product="{{ product_obj.id }}" data-action="increase">
             <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
             <span>Dodaj do koszyka</span>
           </button>

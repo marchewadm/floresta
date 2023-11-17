@@ -1,11 +1,23 @@
 @use "../abstracts" as *;
 
-.btn--sign-in, .btn--store, .account--sign-up, .account--sign-in, .proceed-payment--btn {
+.account--sign-up, .account--sign-in, .proceed-payment--btn {
   @extend %btn--green;
+}
+
+.btn--store {
+  @extend %btn--green;
+  text-decoration: none;
+}
+
+.btn--sign-in {
+  @extend %btn--green;
+  text-decoration: none;
 }
 
 .quote-account--sign-in, .quote-account--sign-up {
   @extend %btn--white;
+  text-decoration: none;
+  text-align: center;
 }
 
 .add-to-cart--btn {

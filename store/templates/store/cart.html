@@ -1,31 +1,42 @@
 {% extends 'store/main.html' %}
+{% load to_dash %}
 {% load static %}
+
 {% block content %}
   <main class="main--cart">
     <section class="cart-section">
       <div class="cart">
         <div class="quote--cart">
           <h2 class="heading heading--cart">Twój koszyk</h2>
-          <p class="total-amount">3 produkty</p>
+          <p class="total-amount">Produkty: {{ order.get_cart_items }}</p>
         </div>
 
         <div class="items--cart">
-          <div class="gallery-container product">
-            <figure class="gallery-item">
-              <img data-src="{% static "img/products/epipremnum_aureum_0.jpg" %}" alt="Epipremnum Aureum Flower" class="lazy">
-              <img data-src="{% static "img/products/epipremnum_aureum_1.jpg" %}" alt="Epipremnum Aureum Flower" class="img-hover lazy">
-            </figure>
-            <p class="product-name">Epipremnum Aureumdsdsasddsas</p>
-            <div>
-              <input type="number" min="0" placeholder="1">
-              <p class="pieces">szt.</p>
+          {% for item in items %}
+            <div class="gallery-container product">
+              <figure class="gallery-item">
+                <a href="{% url 'product' item.product.name|lower|to_dash item.product.id %}">
+                  <img data-src="{{ item.product.image_url }}" alt="{{ item.product.name }}" class="lazy">
+                  <img data-src="{{ item.product.second_image_url }}" alt="{{ item.product.name }}" class="img-hover lazy">
+                </a>
+              </figure>
+              <a href="{% url 'product' item.product.name|lower|to_dash item.product.id %}" class="product-name">{{ item.product.name }}</a>
+              <div class="quantity-box">
+{#                <input type="number" min="0" placeholder="1" value="{{ item.quantity }}">#}
+                <p class="quantity">{{ item.quantity }}</p>
+                <p class="pieces">szt.</p>
+                <div class="quantity-btns">
+                  <ion-icon name="caret-up-outline" class="icon-quantity--increase update-cart" data-product="{{ item.product.id }}" data-action="increase"></ion-icon>
+                  <ion-icon name="caret-down-outline" class="icon-quantity--decrease update-cart" data-product="{{ item.product.id }}" data-action="decrease"></ion-icon>
+                </div>
+              </div>
+              <p class="cart-product-price">{{ item.get_total | floatformat:2 }} zł</p>
+              <ion-icon name="close-outline" class="remove-icon--cart update-cart" data-product="{{ item.product.id }}" data-action="remove"></ion-icon>
             </div>
-            <p class="cart-product-price">15 zł</p>
-            <ion-icon name="close-outline" class="remove-icon--cart"></ion-icon>
-          </div>
+          {% endfor %}
         </div>
 
-        <a href="#" class="back--cart">
+        <a href="{% url 'store' %}" class="back--cart">
           <ion-icon name="arrow-back-outline"></ion-icon>
           <p>Kontynuuj zakupy</p>
         </a>
@@ -36,20 +47,23 @@
         <h3 class="subheading subheading--shipping">Dostawa</h3>
         <select name="#" id="#" class="select-delivery">
           <option value="">Wybierz formę dostawy</option>
-          <option value="standard-delivery">Standardowa dostawa - 14.99 zł</option>
-          <option value="city-delivery">Dostawa na terenie Wrocławia - 9.99 zł</option>
-          <option value="self-pickup">Odbiór osobisty - 0.00 zł</option>
+          {% for shipper in shippers %}
+            <option value="">{{ shipper.name }} - {{ shipper.price | floatformat:2 }} zł</option>
+          {% endfor %}
+{#          <option value="standard-delivery">Standardowa dostawa - 14.99 zł</option>#}
+{#          <option value="city-delivery">Dostawa na terenie Wrocławia - 9.99 zł</option>#}
+{#          <option value="self-pickup">Odbiór osobisty - 0.00 zł</option>#}
         </select>
         <h3 class="subheading subheading--shipping">Uwagi do zamówienia</h3>
         <textarea name="" id="" class="additional-comment"></textarea>
         <div class="summary-price-items">
           <h3 class="subheading subheading--total">Łączna cena</h3>
           <div>
-            <p>3 produkty</p>
-            <p>150.00 zł</p>
+            <p>Produkty: {{ order.get_cart_items }}</p>
+            <p>{{ order.get_cart_total | floatformat:2 }} zł</p>
           </div>
         </div>
-        <a href="#" class="btn-checkout">Płatność</a>
+        <a href="{% url 'checkout' %}" class="btn-checkout">Płatność</a>
       </div>
     </section>
   </main>

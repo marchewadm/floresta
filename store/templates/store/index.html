@@ -1,4 +1,5 @@
 {% extends 'store/main.html' %}
+{% load to_dash %}
 {% load static %}
 
 {% block content %}
@@ -7,7 +8,7 @@
       <div class="hero">
         <div class="container">
           <h2 class="hero--quote">Wprowadź do domu odrobinę... <strong>zieleni</strong></h2>
-          <button class="btn btn--store">Przeglądaj</button>
+          <a href="{% url 'store' %}" class="btn btn--store">Przeglądaj</a>
         </div>
       </div>
     </section>
@@ -20,11 +21,13 @@
             {% for product in products %}
               <div class="gallery-container swiper-slide">
                 <figure class="gallery-item">
-                  <img data-src="{{ product.image_url }}" alt="{{ product.name }}" class="lazy">
-                  <img data-src="{{ product.second_image_url }}" alt="{{ product.name }}" class="img-hover lazy">
+                  <a href="{% url 'product' product.name|lower|to_dash product.id %}">
+                    <img data-src="{{ product.image_url }}" alt="{{ product.name }}" class="lazy">
+                    <img data-src="{{ product.second_image_url }}" alt="{{ product.name }}" class="img-hover lazy">
+                  </a>
                 </figure>
                 <div class="gallery-item--description">
-                  <p class="image-name">{{ product.name }}</p>
+                  <a href="{% url 'product' product.name|lower|to_dash product.id %}" class="image-name">{{ product.name }}</a>
                   <p class="image-price">{{ product.price | floatformat:2 }} zł</p>
                 </div>
               </div>

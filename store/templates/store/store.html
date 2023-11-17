@@ -1,5 +1,7 @@
 {% extends 'store/main.html' %}
+{% load to_dash %}
 {% load static %}
+
 {% block content %}
   <main class="main--store">
     <section class="categories-section">
@@ -22,15 +24,17 @@
         {% for product in products %}
           <div class="gallery-container product">
             <figure class="gallery-item">
-              <img data-src="{{ product.image_url }}" alt="{{ product.name }}" class="lazy">
-              <img data-src="{{ product.second_image_url }}" alt="{{ product.name }}" class="img-hover lazy">
+              <a href="{% url 'product' product.name|lower|to_dash product.id %}">
+                <img data-src="{{ product.image_url }}" alt="{{ product.name }}" class="lazy">
+                <img data-src="{{ product.second_image_url }}" alt="{{ product.name }}" class="img-hover lazy">
+              </a>
             </figure>
             <div class="gallery-item--description">
-              <p class="image-name">{{ product.name }}</p>
+              <a href="{% url 'product' product.name|lower|to_dash product.id %}" class="image-name">{{ product.name }}</a>
               <p class="image-price">{{ product.price | floatformat:2 }} zł</p>
             </div>
             <div class="add-to-cart">
-              <button class="add-to-cart--btn">
+              <button class="add-to-cart--btn update-cart" data-product="{{ product.id }}" data-action="increase">
                 <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
                 <span>Dodaj do koszyka</span>
               </button>
@@ -38,18 +42,37 @@
           </div>
         {% endfor %}
       </div>
-      <div class="pagination">
-        <a href="" class="pagination-btn"><ion-icon name="chevron-back-outline"></ion-icon></a>
-        <a href="" class="pagination-number pagination-active">1</a>
-        <a href="" class="pagination-number">2</a>
-        <a href="" class="pagination-number">3</a>
-        <a href="" class="pagination-number">4</a>
-        <a href="" class="pagination-number">5</a>
-        <a href="" class="pagination-number">6</a>
-        <a href="" class="pagination-number">7</a>
-        <a href="" class="pagination-number">8</a>
-        <a href="" class="pagination-btn"><ion-icon name="chevron-forward-outline"></ion-icon></a>
-      </div>
+      <nav class="pagination">
+        <ul>
+          {% if products.has_previous %}
+            <li>
+              <a href="{% url 'store' products.previous_page_number %}" class="pagination-btn">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </a>
+            </li>
+          {% endif %}
+
+          {% for page in products.adjusted_elided_pages %}
+            {% if page == products.paginator.ELLIPSIS %}
+              {{ page }}
+            {% else %}
+              <li>
+                <a href="{% url 'store' page %}" class="pagination-number {% if page == products.number %}pagination-active{% endif %}">
+                  {{ page }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+
+          {% if products.has_next %}
+            <li>
+              <a href="{% url 'store' products.next_page_number %}" class="pagination-btn">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
     </section>
   </main>
 {% endblock content %}
