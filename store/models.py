@@ -1,5 +1,7 @@
 from django.db import models
+from django.utils.text import slugify
 from django.contrib.auth.models import User
+from unidecode import unidecode
 
 
 # Create your models here.
@@ -13,15 +15,35 @@ class Customer(models.Model):
         return self.name
 
 
+class ProductCategory(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True, editable=False)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+        super(ProductCategory, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True)
     price = models.FloatField()
     new = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
     second_image = models.ImageField(null=True, blank=True)
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True)
+    slug = models.SlugField(max_length=200, unique=True, editable=False)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(unidecode(self.name))
+        super(Product, self).save(*args, **kwargs)
 
     @staticmethod
     def get_image_url(primary_image, fallback_image):

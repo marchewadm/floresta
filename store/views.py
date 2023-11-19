@@ -22,12 +22,26 @@ def signup(request):
     return render(request, 'store/signup.html', context)
 
 
-def store(request, page=1):
-    paginator = Paginator(Product.objects.all(), 20)
-    page = request.GET.get("page", page)
-    products = paginator.get_page(page)
-    products.adjusted_elided_pages = paginator.get_elided_page_range(page)
-    context = {'products': products}
+def store(request, page=1, category_name="all"):
+    def paginate(paginator, page, current_category_fullname):
+        page = request.GET.get('page', page)
+        all_products = paginator.get_page(page)
+        all_products.adjusted_elided_pages = paginator.get_elided_page_range(page)
+        return {'products': all_products, 'current_category_fullname': current_category_fullname}
+
+    if category_name == "all":
+        paginator = Paginator(Product.objects.all(), 20)
+        context = paginate(paginator, page, 'Wszystkie rośliny')
+    elif category_name == "new":
+        paginator = Paginator(Product.objects.filter(new__exact=True), 20)
+        context = paginate(paginator, page, 'Nowości')
+    else:
+        category_obj = get_object_or_404(ProductCategory, slug=category_name)
+        paginator = Paginator(Product.objects.filter(category=category_obj), 20)
+        context = paginate(paginator, page, category_obj.name)
+
+    categories = ProductCategory.objects.all()
+    context.update({'categories': categories, 'current_category': category_name})
     return render(request, 'store/store.html', context)
 
 

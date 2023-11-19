@@ -1,5 +1,4 @@
 {% extends 'store/main.html' %}
-{% load to_dash %}
 {% load static %}
 
 {% block content %}
@@ -15,12 +14,12 @@
           {% for item in items %}
             <div class="gallery-container product">
               <figure class="gallery-item">
-                <a href="{% url 'product' item.product.name|lower|to_dash item.product.id %}">
+                <a href="{% url 'product' item.product.slug item.product.id %}">
                   <img data-src="{{ item.product.image_url }}" alt="{{ item.product.name }}" class="lazy">
                   <img data-src="{{ item.product.second_image_url }}" alt="{{ item.product.name }}" class="img-hover lazy">
                 </a>
               </figure>
-              <a href="{% url 'product' item.product.name|lower|to_dash item.product.id %}" class="product-name">{{ item.product.name }}</a>
+              <a href="{% url 'product' item.product.slug item.product.id %}" class="product-name">{{ item.product.name }}</a>
               <div class="quantity-box">
 {#                <input type="number" min="0" placeholder="1" value="{{ item.quantity }}">#}
                 <p class="quantity">{{ item.quantity }}</p>
