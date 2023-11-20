@@ -21,7 +21,6 @@
               </figure>
               <a href="{% url 'product' item.product.slug item.product.id %}" class="product-name">{{ item.product.name }}</a>
               <div class="quantity-box">
-{#                <input type="number" min="0" placeholder="1" value="{{ item.quantity }}">#}
                 <p class="quantity">{{ item.quantity }}</p>
                 <p class="pieces">szt.</p>
                 <div class="quantity-btns">

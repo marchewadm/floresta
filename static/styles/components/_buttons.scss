@@ -14,6 +14,15 @@
   text-decoration: none;
 }
 
+.btn--logout {
+  @extend %btn--red;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .quote-account--sign-in, .quote-account--sign-up {
   @extend %btn--white;
   text-decoration: none;

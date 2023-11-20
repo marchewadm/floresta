@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.contrib.auth import logout
 from .models import *
 
 
@@ -53,28 +56,28 @@ def product(request, product_name, product_id):
 
 
 def cart(request):
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
+    if not request.user.is_authenticated:
+        return redirect('signin')
+
+    customer = request.user.customer
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderitem_set.all()
 
     context = {'items': items, 'order': order, 'shippers': Shipper.objects.all()}
     return render(request, 'store/cart.html', context)
 
 
 def checkout(request):
-    # context = {}
-    # return render(request, 'store/checkout.html', context)
-    if request.user.is_authenticated:
-        customer = request.user.customer
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        items = order.orderitem_set.all()
-    else:
-        items = []
-        order = {'get_cart_total': 0, 'get_cart_items': 0}
+    if not request.user.is_authenticated:
+        return redirect('/signin/')
+
+    customer = request.user.customer
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    items = order.orderitem_set.all()
+
+    # Check if the cart is empty and if it is, return to cart
+    if not items:
+        return redirect('/cart/')
 
     context = {'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
@@ -106,3 +109,12 @@ def update_item(request):
         order_item.delete()
 
     return JsonResponse('Item was added', safe=False)
+
+
+def logout_view(request):
+    if not request.user.is_authenticated:
+        # TODO: dodać modala jeżeli user nie jest zalogowany z errorem na aktualnej stronie
+        return redirect('/')
+
+    logout(request)
+    return redirect('/')

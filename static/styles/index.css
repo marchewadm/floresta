@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&display=swap");
-.add-to-cart--btn, .quote-account--sign-in, .quote-account--sign-up, .btn-checkout, .account--sign-up, .account--sign-in, .proceed-payment--btn, .btn--store, .btn--sign-in {
+.btn--logout, .add-to-cart--btn, .quote-account--sign-in, .quote-account--sign-up, .btn-checkout, .account--sign-up, .account--sign-in, .proceed-payment--btn, .btn--store, .btn--sign-in {
   font-size: 1.8rem;
   font-family: inherit;
   padding: 1rem;
@@ -33,6 +33,15 @@
 .add-to-cart--btn:hover {
   color: #fff;
   background-color: #27a649;
+}
+
+.btn--logout {
+  color: #fff;
+  background-color: #ce4141;
+  transition: background-color 0.3s;
+}
+.btn--logout:hover {
+  background-color: #bb3030;
 }
 
 .form--personal div input, .account--form div input, .add-to-cart input, .items--cart .gallery-container input {
@@ -79,6 +88,13 @@ html {
 
 .btn--sign-in {
   text-decoration: none;
+}
+
+.btn--logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .quote-account--sign-in, .quote-account--sign-up {
@@ -247,14 +263,22 @@ html {
   gap: 3rem;
 }
 
-.icon--cart {
+.icon--cart, .icon--logout {
   font-size: 2.8rem;
   color: #37383b;
   cursor: pointer;
   transition: all 0.3s;
 }
-.icon--cart:hover {
+.icon--cart:hover, .icon--logout:hover {
   color: #2cbb52;
+}
+
+.icon--logout:hover {
+  color: #ce4141;
+}
+
+.welcome--user {
+  font-size: 1.8rem;
 }
 
 .footer-section {

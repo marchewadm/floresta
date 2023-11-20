@@ -7,10 +7,10 @@
       <h2 class="heading heading--categories">Kategorie</h2>
       <nav class="categories--nav">
         <ul class="categories--list">
-          <li><a href="{% url 'store' %}" class="category--active">Wszystkie rośliny</a></li>
-          <li><a href="{% url 'store_category' "new" %}">Nowości</a></li>
+          <li><a href="{% url 'store' %}" {% if current_category == "all" %} class="category--active" {% endif %}>Wszystkie rośliny</a></li>
+          <li><a href="{% url 'store_category' "new" %}" {% if current_category == "new" %} class="category--active" {% endif %}>Nowości</a></li>
           {% for category in categories %}
-            <li><a href="{% url 'store_category' category.slug %}">{{ category.name }}</a></li>
+            <li><a href="{% url 'store_category' category.slug %}" {% if current_category == category.slug %} class="category--active" {% endif %}>{{ category.name }}</a></li>
           {% endfor %}
         </ul>
       </nav>

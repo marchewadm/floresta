@@ -58,7 +58,7 @@
   gap: 3rem;
 }
 
-.icon--cart {
+.icon--cart, .icon--logout {
   font-size: 2.8rem;
   color: #37383b;
   cursor: pointer;
@@ -67,4 +67,12 @@
   &:hover {
     color: $primary;
   }
+}
+
+.icon--logout:hover {
+  color: #ce4141;
+}
+
+.welcome--user {
+  font-size: $fs-7;
 }
