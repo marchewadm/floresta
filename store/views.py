@@ -4,19 +4,25 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
-from django.http import HttpResponse
 from django.contrib.auth import logout
 from .models import *
+
+
+def get_error_msg(request):
+    error_msg = request.session.pop('error_msg', None)
+    return {'error_msg': error_msg}
 
 
 def index(request):
     products = Product.objects.filter(new__exact=True)
     context = {'products': products}
+    context.update(get_error_msg(request))
     return render(request, 'store/index.html', context)
 
 
 def signin(request):
     context = {}
+    context.update(get_error_msg(request))
     return render(request, 'store/signin.html', context)
 
 
@@ -45,6 +51,7 @@ def store(request, page=1, category_name="all"):
 
     categories = ProductCategory.objects.all()
     context.update({'categories': categories, 'current_category': category_name})
+    context.update(get_error_msg(request))
     return render(request, 'store/store.html', context)
 
 
@@ -52,12 +59,14 @@ def product(request, product_name, product_id):
     product_obj = get_object_or_404(Product, id=product_id)
 
     context = {'product_obj': product_obj}
+    context.update(get_error_msg(request))
     return render(request, 'store/product.html', context)
 
 
 def cart(request):
     if not request.user.is_authenticated:
-        return redirect('signin')
+        request.session['error_msg'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
+        return redirect('/signin/')
 
     customer = request.user.customer
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
@@ -69,6 +78,7 @@ def cart(request):
 
 def checkout(request):
     if not request.user.is_authenticated:
+        request.session['error_msg'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
         return redirect('/signin/')
 
     customer = request.user.customer
@@ -85,6 +95,11 @@ def checkout(request):
 
 def update_item(request):
     data = json.loads(request.body)
+
+    if not request.user.is_authenticated:
+        request.session['error_msg'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
+        return JsonResponse({'error': 'Authentication required'})
+
     product_id = data['productId']
     action = data['action']
 
@@ -113,7 +128,7 @@ def update_item(request):
 
 def logout_view(request):
     if not request.user.is_authenticated:
-        # TODO: dodać modala jeżeli user nie jest zalogowany z errorem na aktualnej stronie
+        request.session['error_msg'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
         return redirect('/')
 
     logout(request)

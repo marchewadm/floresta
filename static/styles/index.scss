@@ -20,6 +20,7 @@
 @use "./layout/footer";
 
 // -- VIEWS
+@use "./views/error";
 @use "./views/main";
 @use "./views/store";
 @use "./views/product";

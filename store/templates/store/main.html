@@ -33,6 +33,15 @@
 </head>
 <body>
 <div class="page-container">
+  {% if error_msg %}
+    <div class="error--box">
+      <p class="error--msg">{{ error_msg }}</p>
+      <div class="loading--bar">
+        <div class="progress--bar"></div>
+      </div>
+    </div>
+  {% endif %}
+
   <header class="header-section">
     <a href="{% url 'index' %}">
       <img data-src="{% static 'img/logos/logo.png' %}" alt="Floresta logo" class="logo lazy">
@@ -133,5 +142,6 @@
 <script src="{% static "js/map.js" %}"></script>
 <script src="{% static "js/year.js" %}"></script>
 <script src="{% static "js/cart.js" %}"></script>
+<script src="{% static "js/error_animation.js" %}"></script>
 </body>
 </html>
