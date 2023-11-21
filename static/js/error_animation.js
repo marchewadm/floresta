@@ -2,7 +2,7 @@
 
 try {
   const barEl = document.querySelector(".progress--bar");
-  const errorBoxEl = document.querySelector(".error--box");
+  const errorBoxEl = document.querySelector(".msg--modal");
 
   if (barEl && errorBoxEl) {
     const load = () => {

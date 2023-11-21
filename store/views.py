@@ -8,25 +8,34 @@ from django.contrib.auth import logout
 from .models import *
 
 
-def get_error_msg(request):
-    error_msg = request.session.pop('error_msg', None)
-    return {'error_msg': error_msg}
+def get_message(request):
+    message = request.session.pop('message', None)
+    return {'message': message}
 
 
 def index(request):
     products = Product.objects.filter(new__exact=True)
     context = {'products': products}
-    context.update(get_error_msg(request))
+    context.update(get_message(request))
     return render(request, 'store/index.html', context)
 
 
 def signin(request):
+    if request.user.is_authenticated:
+        request.session['message'] = "Jesteś już zalogowany"
+        return redirect("/")
+
     context = {}
-    context.update(get_error_msg(request))
+    context.update(get_message(request))
+
     return render(request, 'store/signin.html', context)
 
 
 def signup(request):
+    if request.user.is_authenticated:
+        request.session['message'] = "Jesteś już zalogowany"
+        return redirect("/")
+
     context = {}
     return render(request, 'store/signup.html', context)
 
@@ -51,7 +60,7 @@ def store(request, page=1, category_name="all"):
 
     categories = ProductCategory.objects.all()
     context.update({'categories': categories, 'current_category': category_name})
-    context.update(get_error_msg(request))
+    context.update(get_message(request))
     return render(request, 'store/store.html', context)
 
 
@@ -59,13 +68,13 @@ def product(request, product_name, product_id):
     product_obj = get_object_or_404(Product, id=product_id)
 
     context = {'product_obj': product_obj}
-    context.update(get_error_msg(request))
+    context.update(get_message(request))
     return render(request, 'store/product.html', context)
 
 
 def cart(request):
     if not request.user.is_authenticated:
-        request.session['error_msg'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
+        request.session['message'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
         return redirect('/signin/')
 
     customer = request.user.customer
@@ -73,12 +82,13 @@ def cart(request):
     items = order.orderitem_set.all()
 
     context = {'items': items, 'order': order, 'shippers': Shipper.objects.all()}
+    context.update(get_message(request))
     return render(request, 'store/cart.html', context)
 
 
 def checkout(request):
     if not request.user.is_authenticated:
-        request.session['error_msg'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
+        request.session['message'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
         return redirect('/signin/')
 
     customer = request.user.customer
@@ -87,6 +97,7 @@ def checkout(request):
 
     # Check if the cart is empty and if it is, return to cart
     if not items:
+        request.session['message'] = 'Koszyk nie może być pusty'
         return redirect('/cart/')
 
     context = {'items': items, 'order': order}
@@ -94,17 +105,14 @@ def checkout(request):
 
 
 def update_item(request):
-    data = json.loads(request.body)
-
     if not request.user.is_authenticated:
-        request.session['error_msg'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
+        request.session['message'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
         return JsonResponse({'error': 'Authentication required'})
 
+    data = json.loads(request.body)
     product_id = data['productId']
     action = data['action']
-
-    print(f"Action: {action}")
-    print(f"ProductID: {product_id}")
+    current_url = data['currentUrl']
 
     customer = request.user.customer
     product = Product.objects.get(id=product_id)
@@ -114,6 +122,10 @@ def update_item(request):
 
     if action == "increase":
         order_item.quantity += 1
+        current_url_list = current_url.split("/")
+        # Inform the user about the product being added to the cart when the user is not inspecting the cart.
+        if "cart" not in current_url_list:
+            request.session['message'] = "Produkt został dodany do koszyka"
     elif action == "decrease":
         order_item.quantity -= 1
     elif action == "remove":
@@ -128,7 +140,7 @@ def update_item(request):
 
 def logout_view(request):
     if not request.user.is_authenticated:
-        request.session['error_msg'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
+        request.session['message'] = "Musisz być zalogowany, aby móc wykonać tę czynność"
         return redirect('/')
 
     logout(request)

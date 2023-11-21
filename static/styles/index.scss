@@ -14,13 +14,13 @@
 @use "./components/inputs";
 @use "./components/pagination";
 @use "./components/productbox";
+@use "./components/modal-msg";
 
 // -- LAYOUT
 @use "./layout/navigation";
 @use "./layout/footer";
 
 // -- VIEWS
-@use "./views/error";
 @use "./views/main";
 @use "./views/store";
 @use "./views/product";

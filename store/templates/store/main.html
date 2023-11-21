@@ -33,9 +33,9 @@
 </head>
 <body>
 <div class="page-container">
-  {% if error_msg %}
-    <div class="error--box">
-      <p class="error--msg">{{ error_msg }}</p>
+  {% if message %}
+    <div class="msg--modal">
+      <p class="msg">{{ message }}</p>
       <div class="loading--bar">
         <div class="progress--bar"></div>
       </div>
