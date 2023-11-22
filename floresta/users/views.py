@@ -41,6 +41,7 @@ def signup(request):
 
             if user is not None:
                 login(request, user)
+                request.session['message'] = "Rejestracja przebiegła pomyślnie!"
                 return redirect("/")
             else:
                 request.session['message'] = "Coś poszło nie tak..."

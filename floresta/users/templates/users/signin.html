@@ -9,11 +9,11 @@
           {% csrf_token %}
           <div>
             <label for="email">Email</label>
-            <input type="email" name="email" placeholder="jan.kowalski@example.com" required>
+            <input type="email" name="email" placeholder="jan.kowalski@example.com" autofocus required>
           </div>
           <div>
             <label for="password">Hasło</label>
-            <input type="password" name="password" placeholder="********" required>
+            <input type="password" name="password" minlength="8" placeholder="********" required>
           </div>
           <div>
             <button class="account--sign-in" type="submit">Zaloguj się</button>

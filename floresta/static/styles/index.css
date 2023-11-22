@@ -557,6 +557,11 @@ html {
   letter-spacing: 0.2px;
 }
 
+.form--error {
+  font-size: 1.4rem;
+  color: #ce4141;
+}
+
 .quote--box {
   color: #fff;
   background-color: #27a649;

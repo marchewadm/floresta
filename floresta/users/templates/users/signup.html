@@ -7,22 +7,15 @@
       <div class="account--box">
         <form action="" class="account--form" method="POST">
           {% csrf_token %}
-          <div>
-            <label for="name">Jak się nazywasz?</label>
-            {{ form.first_name }}
-          </div>
-          <div>
-            <label for="email">Email</label>
-            {{ form.email }}
-          </div>
-          <div>
-            <label for="password">Hasło</label>
-            {{ form.password1 }}
-          </div>
-          <div>
-            <label for="password">Powtórz hasło</label>
-            {{ form.password2 }}
-          </div>
+          {% for field in form.visible_fields %}
+            <div>
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.errors %}
+                <p class="form--error">{{ field.errors.as_text|escape  }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
           <div>
             <button class="account--sign-up">Zarejestruj się</button>
           </div>
