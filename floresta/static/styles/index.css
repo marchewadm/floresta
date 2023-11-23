@@ -303,13 +303,13 @@ html {
   gap: 3rem;
 }
 
-.icon--cart, .icon--logout {
+.icon--cart, .icon--logout, .icon--admin-panel {
   font-size: 2.8rem;
   color: #37383b;
   cursor: pointer;
   transition: all 0.3s;
 }
-.icon--cart:hover, .icon--logout:hover {
+.icon--cart:hover, .icon--logout:hover, .icon--admin-panel:hover {
   color: #2cbb52;
 }
 
@@ -942,6 +942,8 @@ html {
   background-color: #27a649;
   border-top-right-radius: 0.6rem;
   border-bottom-right-radius: 0.6rem;
+}
+.summary form {
   display: flex;
   flex-direction: column;
 }

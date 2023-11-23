@@ -158,8 +158,11 @@
   background-color: $primary-dark;
   border-top-right-radius: $br-normal;
   border-bottom-right-radius: $br-normal;
-  display: flex;
-  flex-direction: column;
+
+  & form {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .heading--summary {

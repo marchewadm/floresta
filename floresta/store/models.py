@@ -120,6 +120,7 @@ class Order(models.Model):
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
     shipper = models.ForeignKey(Shipper, on_delete=models.SET_NULL, null=True)
+    comment = models.TextField(max_length=300, blank=True, null=True)
 
     def __str__(self):
         return str(self.id)

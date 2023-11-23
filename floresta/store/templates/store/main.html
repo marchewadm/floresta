@@ -64,6 +64,11 @@
         <ion-icon name="cart-outline" class="icon--cart"></ion-icon>
       </a>
       {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+          <a href="{% url 'admin:index' %}">
+            <ion-icon name="server-outline" class="icon--admin-panel"></ion-icon>
+          </a>
+        {% endif %}
         <a href="{% url 'logout' %}">
           <ion-icon name="power-outline" class="icon--logout"></ion-icon>
         </a>
@@ -121,6 +126,9 @@
         <p class="heading--footer">Konto</p>
         <ul class="footer--links">
           {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+              <li><a href="{% url 'admin:index' %}" class="footer--link">Administracja</a></li>
+            {% endif %}
             <li><a href="{% url 'logout' %}" class="footer--link">Wyloguj się</a></li>
           {% else %}
             <li><a href="{% url 'signin' %}" class="footer--link">Zaloguj się</a></li>

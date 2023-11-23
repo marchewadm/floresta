@@ -42,26 +42,21 @@
 
       <div class="summary">
         <h2 class="heading heading--summary">Podsumowanie</h2>
-        <h3 class="subheading subheading--shipping">Dostawa</h3>
-        <select name="#" id="#" class="select-delivery">
-          <option value="">Wybierz formę dostawy</option>
-          {% for shipper in shippers %}
-            <option value="">{{ shipper.name }} - {{ shipper.price | floatformat:2 }} zł</option>
-          {% endfor %}
-{#          <option value="standard-delivery">Standardowa dostawa - 14.99 zł</option>#}
-{#          <option value="city-delivery">Dostawa na terenie Wrocławia - 9.99 zł</option>#}
-{#          <option value="self-pickup">Odbiór osobisty - 0.00 zł</option>#}
-        </select>
-        <h3 class="subheading subheading--shipping">Uwagi do zamówienia</h3>
-        <textarea name="" id="" class="additional-comment"></textarea>
-        <div class="summary-price-items">
-          <h3 class="subheading subheading--total">Łączna cena</h3>
-          <div>
-            <p>Produkty: {{ order.get_cart_items }}</p>
-            <p>{{ order.get_cart_total | floatformat:2 }} zł</p>
+        <form method="POST">
+          {% csrf_token %}
+          <h3 class="subheading subheading--shipping">Dostawa</h3>
+          {{ form.shipper }}
+          <h3 class="subheading subheading--shipping">Uwagi do zamówienia</h3>
+          {{ form.order_comment }}
+          <div class="summary-price-items">
+            <h3 class="subheading subheading--total">Łączna cena</h3>
+            <div>
+              <p>Produkty: {{ order.get_cart_items }}</p>
+              <p>{{ order.get_cart_total | floatformat:2 }} zł</p>
+            </div>
           </div>
-        </div>
-        <a href="{% url 'checkout' %}" class="btn-checkout">Płatność</a>
+          <button class="btn-checkout">Płatność</button>
+        </form>
       </div>
     </section>
   </main>

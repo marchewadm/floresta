@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from .models import *
+from .forms import CartForm
 
 
 def get_message(request):
@@ -60,7 +61,35 @@ def cart(request):
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     items = order.orderitem_set.all()
 
-    context = {'items': items, 'order': order, 'shippers': Shipper.objects.all()}
+    # Retrieving the previous selection data for the shipper and comment if the user navigated back to the cart after submitting the form.
+    prev_shipper_id = order.shipper.id if order.shipper else None
+    prev_order_comment = order.comment if order.comment else ""
+
+    # Form initialization
+    form = CartForm(request.POST or None, initial={'shipper': prev_shipper_id, 'order_comment': prev_order_comment})
+    form.fields['shipper'].choices = [
+        ('', 'Wybierz formę dostawy')
+    ] + [
+        (shipper.id, f"{shipper.name} - {shipper.price:.2f} zł") for shipper in Shipper.objects.all()
+    ]
+
+    if request.method == "POST" and form.is_valid():
+        # Check if the cart is empty, and if it is, return to the cart immediately.
+        if not items:
+            request.session['message'] = 'Koszyk nie może być pusty'
+            return redirect('/cart/')
+
+        shipper_id = form.cleaned_data['shipper']
+        order_comment = form.cleaned_data['order_comment']
+        if order_comment:
+            order.comment = order_comment
+        if shipper_id:
+            shipper = get_object_or_404(Shipper, id=shipper_id)
+            order.shipper = shipper
+        order.save()
+        return redirect('/checkout/')
+
+    context = {'items': items, 'order': order, 'form': form}
     context.update(get_message(request))
     return render(request, 'store/cart.html', context)
 
@@ -74,7 +103,6 @@ def checkout(request):
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     items = order.orderitem_set.all()
 
-    # Check if the cart is empty, and if it is, return to the cart immediately.
     if not items:
         request.session['message'] = 'Koszyk nie może być pusty'
         return redirect('/cart/')
