@@ -1022,18 +1022,18 @@ html {
   column-gap: 3rem;
 }
 
-.form--personal {
+.fields-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
-.form--personal div {
+.fields-container div {
   display: inline-grid;
 }
-.form--personal div:nth-child(3), .form--personal div:last-child {
+.fields-container div:nth-child(3), .fields-container div:last-child {
   grid-column: 1/span 2;
 }
-.form--personal div label {
+.fields-container div label {
   font-size: 1.8rem;
   font-weight: 500;
   letter-spacing: 0.2px;

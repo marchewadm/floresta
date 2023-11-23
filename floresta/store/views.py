@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from .models import *
-from .forms import CartForm
+from .forms import CartForm, CheckoutForm
 
 
 def get_message(request):
@@ -81,11 +81,16 @@ def cart(request):
 
         shipper_id = form.cleaned_data['shipper']
         order_comment = form.cleaned_data['order_comment']
+
         if order_comment:
             order.comment = order_comment
+        else:
+            order.comment = ""
+
         if shipper_id:
             shipper = get_object_or_404(Shipper, id=shipper_id)
             order.shipper = shipper
+
         order.save()
         return redirect('/checkout/')
 
@@ -103,11 +108,29 @@ def checkout(request):
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     items = order.orderitem_set.all()
 
+    # Check if the cart is empty, and if it is, return to the cart immediately.
     if not items:
         request.session['message'] = 'Koszyk nie może być pusty'
         return redirect('/cart/')
 
-    context = {'items': items, 'order': order}
+    form = CheckoutForm(
+        request.POST or None,
+        initial={'first_name': customer.name.capitalize(), 'email': customer.email}
+    )
+
+    if request.method == "POST" and form.is_valid():
+        shipping_address, created = ShippingAddress.objects.get_or_create(customer=customer, order=order)
+
+        for field in ['name', 'last_name', 'email', 'street', 'city', 'postal_code']:
+            setattr(shipping_address, field, form.cleaned_data[field])
+        if form.cleaned_data['phone_number']:
+            shipping_address.phone = form.cleaned_data['phone_number']
+
+        shipping_address.save()
+        request.session['message'] = "Zamówienie zostało złożone"
+        return redirect("/")
+
+    context = {'items': items, 'order': order, 'form': form}
     return render(request, 'store/checkout.html', context)
 
 

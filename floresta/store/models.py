@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.utils.text import slugify
 from custom_user.models import User
@@ -118,12 +120,12 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
-    transaction_id = models.CharField(max_length=200, null=True)
+    transaction_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     shipper = models.ForeignKey(Shipper, on_delete=models.SET_NULL, null=True)
     comment = models.TextField(max_length=300, blank=True, null=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(f"Zamówienie ID: {self.id}")
 
     @property
     def get_cart_total(self):
@@ -154,6 +156,9 @@ class OrderItem(models.Model):
         total = self.product.price * self.quantity
         return total
 
+    def __str__(self):
+        return str(self.order)
+
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
@@ -161,11 +166,11 @@ class ShippingAddress(models.Model):
     name = models.CharField(max_length=200, null=True)
     last_name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
-    address = models.CharField(max_length=200, null=True)
+    street = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)
-    zipcode = models.CharField(max_length=200, null=True)
+    postal_code = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=9, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.address
+        return str(self.order)
