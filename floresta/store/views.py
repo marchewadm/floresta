@@ -58,7 +58,7 @@ def cart(request):
         return redirect('/signin/')
 
     customer = request.user.customer
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order, created = Order.objects.get_or_create(customer=customer, is_paid=False)
     items = order.orderitem_set.all()
 
     # Retrieving the previous selection data for the shipper and comment if the user navigated back to the cart
@@ -106,7 +106,7 @@ def checkout(request):
         return redirect('/signin/')
 
     customer = request.user.customer
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order, created = Order.objects.get_or_create(customer=customer, is_paid=False)
     items = order.orderitem_set.all()
 
     # Check if the cart is empty, and if it is, return to the cart immediately.
@@ -136,6 +136,7 @@ def checkout(request):
             product.total_quantity -= quantity
             product.save()
 
+        order.is_paid = True
         order.total = order.get_total_price
         order.save()
 
@@ -158,7 +159,7 @@ def update_item(request):
 
     customer = request.user.customer
     product = Product.objects.get(id=product_id)
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order, created = Order.objects.get_or_create(customer=customer, is_paid=False)
 
     order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
 
