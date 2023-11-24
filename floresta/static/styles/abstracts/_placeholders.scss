@@ -56,6 +56,17 @@
   }
 }
 
+%btn--grey-to-red {
+  @extend %btn;
+  color: $secondary;
+  background-color: darken(#fff, 5%);
+
+  &:hover {
+    color: #fff;
+    background-color: #ce4141;
+  }
+}
+
 // --- INPUT ---
 %input {
   font-family: inherit;

@@ -61,7 +61,8 @@ def cart(request):
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
     items = order.orderitem_set.all()
 
-    # Retrieving the previous selection data for the shipper and comment if the user navigated back to the cart after submitting the form.
+    # Retrieving the previous selection data for the shipper and comment if the user navigated back to the cart
+    # after submitting the form.
     prev_shipper_id = order.shipper.id if order.shipper else None
     prev_order_comment = order.comment if order.comment else ""
 
@@ -125,8 +126,19 @@ def checkout(request):
             setattr(shipping_address, field, form.cleaned_data[field])
         if form.cleaned_data['phone_number']:
             shipping_address.phone = form.cleaned_data['phone_number']
-
         shipping_address.save()
+
+        # Change total_quantity in Product model when product is purchased
+        for item in items:
+            product = item.product
+            quantity = item.quantity
+
+            product.total_quantity -= quantity
+            product.save()
+
+        order.total = order.get_total_price
+        order.save()
+
         request.session['message'] = "Zamówienie zostało złożone"
         return redirect("/")
 
@@ -151,11 +163,14 @@ def update_item(request):
     order_item, created = OrderItem.objects.get_or_create(order=order, product=product)
 
     if action == "increase":
-        order_item.quantity += 1
-        current_url_list = current_url.split("/")
-        # Inform the user about the product being added to the cart when the user is not inspecting the cart.
-        if "cart" not in current_url_list:
-            request.session['message'] = "Produkt został dodany do koszyka"
+        if order_item.quantity < product.total_quantity:
+            order_item.quantity += 1
+            current_url_list = current_url.split("/")
+            # Inform the user about the product being added to the cart when the user is not inspecting the cart.
+            if "cart" not in current_url_list:
+                request.session['message'] = "Produkt został dodany do koszyka"
+        else:
+            request.session['message'] = "Aktualnie nie posiadamy tylu sztuk wybranego produktu"
     elif action == "decrease":
         order_item.quantity -= 1
     elif action == "remove":

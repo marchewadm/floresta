@@ -11,23 +11,48 @@
             <img data-src="{{ product_obj.second_image_url }}" alt="{{ product_obj.name }}" class="img-hover lazy">
           </a>
         </figure>
+        {% if product_obj.total_quantity > 0 %}
+          <div class="add-to-cart">
+            <input type="number" min="1" value="1" placeholder="1">
+            <p>szt.</p>
+            <button class="add-to-cart--btn update-cart" data-product="{{ product_obj.id }}" data-action="increase">
+              <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
+              <span>Dodaj do koszyka</span>
+            </button>
+          </div>
+          <p class="total-quantity">Dostępność: {{ product_obj.total_quantity }} szt.</p>
+        {% else %}
+          <div class="add-to-cart">
+            <button class="add-to-cart--btn-unavailable">
+              <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
+              <span>Produkt niedostępny</span>
+            </button>
+          </div>
+          <p class="total-quantity">Dostępność: {{ product_obj.total_quantity }} szt.</p>
+        {% endif %}
       </div>
       <div class="product-box">
         <h2 class="heading heading--product-name">{{ product_obj.name }}</h2>
         <p class="product-price">{{ product_obj.price | floatformat:2 }} zł</p>
-        <p class="product-description">
-          Epipremnum Aureum, znany również jako Pothos, to niezwykle wdzięczna roślina, idealna dla każdego miłośnika
-          zieleni. Jego soczyste, zielone liście zdobią pomieszczenie, nadając mu świeżości i uroku. Łatwa w pielęgnacji, roślina ta jest
-          doskonała dla tych, którzy dopiero rozpoczynają swoją przygodę z roślinami. Epipremnum Aureum radzi sobie w różnych warunkach
-          świetlnych, a jej zdolność do oczyszczania powietrza sprawia, że stanowi nie tylko dekorację, ale także funkcjonalny element wnętrza.
-        </p>
-        <div class="add-to-cart">
-          <input type="number" min="1" value="1" placeholder="1">
-          <p>szt.</p>
-          <button class="add-to-cart--btn update-cart" data-product="{{ product_obj.id }}" data-action="increase">
-            <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
-            <span>Dodaj do koszyka</span>
-          </button>
+        <div class="product-description--container">
+          <div>
+            <h3 class="subheading subheading--product-description">Opis</h3>
+            <p class="product-description">
+             {{ product_obj.description }}
+            </p>
+          </div>
+          <div>
+            <h3 class="subheading subheading--product-description">Stanowisko</h3>
+            <p class="product-description">
+              {{ product_obj.position }}
+            </p>
+          </div>
+          <div>
+            <h3 class="subheading subheading--product-description">Podlewanie</h3>
+            <p class="product-description">
+              {{ product_obj.watering }}
+            </p>
+          </div>
         </div>
       </div>
     </section>

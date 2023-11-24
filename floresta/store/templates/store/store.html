@@ -19,26 +19,37 @@
     <section class="store-products-section">
       <h2 class="heading heading--products">{{ current_category_fullname }}</h2>
       <div class="store-products-container">
-        {% for product in products %}
-          <div class="gallery-container product">
-            <figure class="gallery-item">
-              <a href="{% url 'product' product.slug product.id %}">
-                <img data-src="{{ product.image_url }}" alt="{{ product.name }}" class="lazy">
-                <img data-src="{{ product.second_image_url }}" alt="{{ product.name }}" class="img-hover lazy">
-              </a>
-            </figure>
-            <div class="gallery-item--description">
-              <a href="{% url 'product' product.slug product.id %}" class="image-name">{{ product.name }}</a>
-              <p class="image-price">{{ product.price | floatformat:2 }} zł</p>
+        {% if products %}
+          {% for product in products %}
+            <div class="gallery-container product">
+              <figure class="gallery-item">
+                <a href="{% url 'product' product.slug product.id %}">
+                  <img data-src="{{ product.image_url }}" alt="{{ product.name }}" class="lazy">
+                  <img data-src="{{ product.second_image_url }}" alt="{{ product.name }}" class="img-hover lazy">
+                </a>
+              </figure>
+              <div class="gallery-item--description">
+                <a href="{% url 'product' product.slug product.id %}" class="image-name">{{ product.name }}</a>
+                <p class="image-price">{{ product.price | floatformat:2 }} zł</p>
+              </div>
+              <div class="add-to-cart">
+                {% if product.total_quantity > 0 %}
+                  <button class="add-to-cart--btn update-cart" data-product="{{ product.id }}" data-action="increase">
+                    <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
+                    <span>Dodaj do koszyka</span>
+                  </button>
+                {% else %}
+                  <button class="add-to-cart--btn-unavailable">
+                    <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
+                    <span>Produkt niedostępny</span>
+                  </button>
+                {% endif %}
+              </div>
             </div>
-            <div class="add-to-cart">
-              <button class="add-to-cart--btn update-cart" data-product="{{ product.id }}" data-action="increase">
-                <ion-icon name="cart-outline" class="add-to-cart--icon"></ion-icon>
-                <span>Dodaj do koszyka</span>
-              </button>
-            </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        {% else %}
+          <p class="category-empty--error">Przepraszamy, kategoria wygląda na pustą...</p>
+        {% endif %}
       </div>
       <nav class="pagination">
         <ul>

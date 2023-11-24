@@ -15,6 +15,15 @@
   margin-bottom: 7.8rem;
   display: flex;
   flex-direction: column;
+  min-width: 120rem;
+}
+
+.category-empty--error {
+  font-size: $fs-6;
+
+  grid-column: 1 / -1;
+  justify-self: center;
+  align-self: center;
 }
 
 .heading--categories{

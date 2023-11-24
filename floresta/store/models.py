@@ -45,13 +45,17 @@ class ProductCategory(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=200, null=True)
+    name = models.CharField(max_length=150, null=True)
     price = models.FloatField()
     new = models.BooleanField(default=False, null=True, blank=False)
     image = models.ImageField(null=True, blank=True)
     second_image = models.ImageField(null=True, blank=True)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(max_length=200, unique=True, editable=False)
+    description = models.CharField(max_length=600, null=True)
+    position = models.CharField(max_length=200, null=True)
+    watering = models.CharField(max_length=200, null=True)
+    total_quantity = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -123,6 +127,7 @@ class Order(models.Model):
     transaction_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     shipper = models.ForeignKey(Shipper, on_delete=models.SET_NULL, null=True)
     comment = models.TextField(max_length=300, blank=True, null=True)
+    total = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True)
 
     def __str__(self):
         return str(f"Zamówienie ID: {self.id}")

@@ -31,6 +31,20 @@
 
 .add-to-cart--btn {
   @extend %btn--grey;
+
+}
+
+.add-to-cart--btn-unavailable {
+  @extend %btn--grey-to-red;
+}
+
+.btn-checkout {
+  @extend %btn--white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.add-to-cart--btn-unavailable, .add-to-cart--btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -38,10 +52,4 @@
   span {
     font-size: $fs-8;
   }
-}
-
-.btn-checkout {
-  @extend %btn--white;
-  text-decoration: none;
-  text-align: center;
 }
