@@ -2,6 +2,10 @@
 
 This project was developed as part of an assignment for the "Advanced Python Programming Techniques" course at my university. It was created from scratch by myself.
 
+
+https://github.com/marchewadev/floresta/assets/23455210/4f278c7a-afc4-4289-bb36-763863afdfa6
+
+
 ## Prerequisites
 
 - Python 3.10 or higher
